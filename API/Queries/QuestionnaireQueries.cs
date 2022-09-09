@@ -1,11 +1,14 @@
-﻿using Database;
+﻿using API.Extensions;
+using Database;
 using Database.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Queries
 {
     public class QuestionnaireQueries
     {
-        public IQueryable<Questionnaire> GetQuestionnaire([Service] DatabaseContext context) =>
-            context.Questionnaires;
+        [UseApplicationDbContext]
+        public Task<List<Questionnaire>> GetQuestionnaire([ScopedService] QuestionnaireDatabaseContext context) =>
+            context.Questionnaires.ToListAsync();
     }
 }

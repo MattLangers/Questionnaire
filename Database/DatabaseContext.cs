@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-    public class DatabaseContext : DbContext
+    public class QuestionnaireDatabaseContext : DbContext
     {
-        public DatabaseContext(
-            DbContextOptions<DatabaseContext> options)
+        public QuestionnaireDatabaseContext(
+            DbContextOptions<QuestionnaireDatabaseContext> options)
             : base(options)
         {
         }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Questionnaire"), b => b.MigrationsAssembly("API")));
+builder.Services.AddPooledDbContextFactory<QuestionnaireDatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Questionnaire"), b => b.MigrationsAssembly("API")));
 
 builder.Services
     .AddGraphQLServer()
