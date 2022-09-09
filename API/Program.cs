@@ -1,6 +1,7 @@
 using API.Mutations.Questionannaire;
 using API.Queries;
 using Database;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,6 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGraphQL();
+app.MapGraphQL("/");
 
 app.Run();

@@ -6,9 +6,13 @@ namespace Database.Models
     [Table(name: "Author")]
     public class Author
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public Guid Id { get; set; }
 
         public Guid OrganisationId { get; set; }
+
+        public DateTime CreatedDate { get; set; } = default!;
 
         public Organisation Organisation { get; set; } = default!;
 

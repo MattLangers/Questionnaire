@@ -1,18 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Models
+namespace Database.Models.Questions
 {
-    [Table(name: "Organisation")]
-    public class Organisation
+    [Table("QuestionType")]
+    public class QuestionType
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        [Required, MaxLength(200)]
         public string Name { get; set; } = default!;
-
-        public DateTime CreatedDate { get; set; } = default!;
     }
 }

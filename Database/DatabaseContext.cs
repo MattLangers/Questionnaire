@@ -1,4 +1,5 @@
 ﻿using Database.Models;
+using Database.Models.Questions;
 using Database.Seed.Factories;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +15,32 @@ namespace Database
         {
         }
 
-        public DbSet<Questionnaire> Questionnaires { get; set; }
+        public DbSet<Author> Authors { get; set; } = default!;
 
-        public DbSet<Author> Authors { get; set; }
+        public DbSet<Question> Questions { get; set; } = default!;
+
+        public DbSet<QuestionType> QuestionTypes { get; set; } = default!;
+
+        public DbSet<Questionnaire> Questionnaires { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>().HasIndex(a => a.Id);
-
+            modelBuilder.Entity<Author>().Property(a => a.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<Author>().Property(a => a.CreatedDate).HasDefaultValueSql("GETUTCDATE()");
             modelBuilder.Entity<Author>().HasData(databaseSeedingFactory.CreateAuthors());
 
+            modelBuilder.Entity<Organisation>().Property(a => a.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<Organisation>().Property(a => a.CreatedDate).HasDefaultValueSql("GETUTCDATE()");
             modelBuilder.Entity<Organisation>().HasData(databaseSeedingFactory.CreateOrganisations());
+
+            modelBuilder.Entity<Question>().Property(a => a.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<Question>().Property(a => a.CreatedDate).HasDefaultValueSql("GETUTCDATE()");
+            modelBuilder.Entity<Question>().Property(a => a.IsDeleted).HasDefaultValue(false);
+
+            modelBuilder.Entity<Questionnaire>().Property(a => a.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<Questionnaire>().Property(a => a.CreatedDate).HasDefaultValueSql("GETUTCDATE()");
+            modelBuilder.Entity<Questionnaire>().Property(a => a.IsDeleted).HasDefaultValue(false);
         }
     }
 }
