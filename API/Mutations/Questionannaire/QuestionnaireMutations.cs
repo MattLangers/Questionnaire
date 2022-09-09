@@ -14,7 +14,8 @@ namespace API.Mutations.Questionannaire
         {
             var questionnaire = new Questionnaire
             {
-                Name = input.Name,
+                Name = input.QuestionnaireName,
+                AuthorId = input.AuthorId
             };
 
             context.Questionnaires.Add(questionnaire);

@@ -2,6 +2,6 @@
 {
     public class AddQuetionnaireInput
     {
-        public record AddQuestionnaireInput(string Name);
+        public record AddQuestionnaireInput(string QuestionnaireName, Guid AuthorId);
     }
 }

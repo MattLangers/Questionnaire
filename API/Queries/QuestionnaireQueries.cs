@@ -8,7 +8,7 @@ namespace API.Queries
     public class QuestionnaireQueries
     {
         [UseApplicationDbContext]
-        public Task<List<Questionnaire>> GetQuestionnaire([ScopedService] QuestionnaireDatabaseContext context) =>
+        public Task<List<Questionnaire>> GetQuestionnaires([ScopedService] QuestionnaireDatabaseContext context) =>
             context.Questionnaires.ToListAsync();
     }
 }
